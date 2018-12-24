@@ -24,4 +24,9 @@
     src: bashrc
     dest: "{{ ansible_env.HOME }}/.bashrc"
     mode: 0600
+
+- name: Copy .inputrc
+  copy:
+    src: inputrc
+    dest: "{{ ansible_env.HOME }}/.inputrc"
 ...
