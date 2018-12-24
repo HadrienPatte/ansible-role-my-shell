@@ -1,0 +1,21 @@
+---
+- name: Install CLI utilities
+  become: true
+  apt:
+    update_cache: true
+    name:
+      - git
+      - vim
+      - htop
+      - ncdu
+      - nmap
+      - sshuttle
+      - p7zip-full
+      - gnupg2
+      - unrar
+      - sl
+      - cmatrix
+      - cowsay
+      - traceroute
+    state: present
+...
