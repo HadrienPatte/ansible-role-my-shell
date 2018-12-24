@@ -1,0 +1,18 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Create test user
+      user:
+        name: test-user
+        groups: sudo
+        state: present
+
+    - name: Give passwordless sudo to sudoers
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: ^%sudo ALL=
+        line: "%sudo ALL=(ALL) NOPASSWD: ALL"
+        validate: /usr/sbin/visudo -cf %s
+...

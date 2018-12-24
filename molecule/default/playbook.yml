@@ -3,3 +3,5 @@
   hosts: all
   roles:
     - role: hadrienpatte.my-shell
+  vars:
+    ansible_user: test-user

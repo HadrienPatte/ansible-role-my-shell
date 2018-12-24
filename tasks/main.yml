@@ -18,4 +18,10 @@
       - cowsay
       - traceroute
     state: present
+
+- name: Copy .bashrc
+  copy:
+    src: bashrc
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    mode: 0600
 ...
