@@ -173,19 +173,19 @@ fi
 
 AUTOJUMP=/usr/share/autojump/autojump.bash
 if [ -f $AUTOJUMP ]; then
-   . $AUTOJUMP
+    . $AUTOJUMP
 fi
 unset AUTOJUMP
 
 if [ -f $(which pipenv) ]; then
-  eval "$(pipenv --completion)"
+    eval "$(pipenv --completion)"
 fi
 
 VIRTUALENVWRAPPER=$HOME/.local/bin/virtualenvwrapper.sh
 if [ -f $VIRTUALENVWRAPPER ]; then
-  WORKON_HOME=$HOME/.virtualenvs
-  PROJECT_HOME=$HOME/Documents/Projets
-  VIRTUALENVWRAPPER_PYTHON=$(which python3)
-  . $VIRTUALENVWRAPPER
+    WORKON_HOME=$HOME/.virtualenvs
+    PROJECT_HOME=$HOME/Documents/Projets
+    VIRTUALENVWRAPPER_PYTHON=$(which python3)
+    . $VIRTUALENVWRAPPER
 fi
 unset VIRTUALENVWRAPPER
