@@ -20,6 +20,9 @@
       - autojump
       - python3-dev
     state: present
+  register: apt_result
+  until: apt_result is succeeded
+  retries: 3
 
 - name: Download get-pip
   get_url:
