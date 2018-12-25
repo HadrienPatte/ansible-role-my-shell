@@ -35,6 +35,7 @@ def test_apt_package_is_installed(host, name):
     ('pip'),
     ('pipenv'),
     ('virtualenvwrapper'),
+    ('pipenvwrapper.sh'),
 ])
 def test_pip_package_is_installed(host, name):
     package = host.file('/home/test-user/.local/bin/' + name)

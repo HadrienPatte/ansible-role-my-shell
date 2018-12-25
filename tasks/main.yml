@@ -46,6 +46,12 @@
     executable: "{{ ansible_env.HOME }}/.local/bin/pip3"
     extra_args: --user
 
+- name: Install pipenvwrapper
+  get_url:
+    url: https://raw.githubusercontent.com/Peibolvig/pipenvwrapper/master/pipenvwrapper.sh
+    dest: "{{ ansible_env.HOME }}/.local/bin/pipenvwrapper.sh"
+    mode: 0755
+
 - name: Copy .bashrc
   copy:
     src: bashrc
