@@ -51,4 +51,13 @@
   copy:
     src: inputrc
     dest: "{{ ansible_env.HOME }}/.inputrc"
+
+- name: Configure sudo insults
+  become: true
+  lineinfile:
+    path: /etc/sudoers
+    regexp: ^Defaults        insults
+    insertafter: ^Defaults
+    line: Defaults        insults
+    validate: /usr/sbin/visudo -cf %s
 ...

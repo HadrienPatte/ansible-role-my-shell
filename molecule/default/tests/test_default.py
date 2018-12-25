@@ -37,3 +37,13 @@ def test_pip_package_is_installed(host, name):
     package = host.file('/home/test-user/.local/bin/' + name)
     assert package.exists
     assert package.is_file
+
+
+@pytest.mark.parametrize('line, path', [
+    ('Defaults        insults', '/etc/sudoers'),
+])
+def test_line_is_in_file(host, line, path):
+    file = host.file(path)
+    assert file.exists
+    assert file.is_file
+    assert file.contains(line)
