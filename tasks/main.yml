@@ -37,9 +37,11 @@
     executable: python3
     creates: "{{ ansible_env.HOME }}/.local/bin/pip"
 
-- name: Install pipenv
+- name: Install pip packages
   pip:
-    name: pipenv
+    name:
+      - pipenv
+      - virtualenvwrapper
     state: present
     executable: "{{ ansible_env.HOME }}/.local/bin/pip3"
     extra_args: --user
