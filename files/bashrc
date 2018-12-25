@@ -176,3 +176,7 @@ if [ -f $AUTOJUMP ]; then
    . $AUTOJUMP
 fi
 unset AUTOJUMP
+
+if [ -f $(which pipenv) ]; then
+  eval "$(pipenv --completion)"
+fi
