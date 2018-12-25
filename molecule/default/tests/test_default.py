@@ -33,6 +33,7 @@ def test_apt_package_is_installed(host, name):
 
 @pytest.mark.parametrize('name', [
     ('pip'),
+    ('pipenv'),
 ])
 def test_pip_package_is_installed(host, name):
     package = host.file('/home/test-user/.local/bin/' + name)

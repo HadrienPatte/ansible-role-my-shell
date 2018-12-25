@@ -37,6 +37,13 @@
     executable: python3
     creates: "{{ ansible_env.HOME }}/.local/bin/pip"
 
+- name: Install pipenv
+  pip:
+    name: pipenv
+    state: present
+    executable: "{{ ansible_env.HOME }}/.local/bin/pip3"
+    extra_args: --user
+
 - name: Copy .bashrc
   copy:
     src: bashrc
