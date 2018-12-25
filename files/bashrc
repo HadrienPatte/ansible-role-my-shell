@@ -21,8 +21,21 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=
+HISTFILESIZE=
+
+# Use an unlimited history file
+HISTFILE=~/.bash_eternal_history
+
+# Force prompt to write history after every command.
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# History appearance
+HISTORY_COLOR_LWHITE="\033[1;37m"
+HISTORY_COLOR_NORMAL="\033[00m"
+HISTTIMEFORMAT=`echo -e $HISTORY_COLOR_LWHITE[%F %T] $HISTORY_COLOR_NORMAL `
+HISTIGNORE='cd:ls:ll:la:l:pwd'
+unset HISTORY_COLOR_LWHITE HISTORY_COLOR_NORMAL
 
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
