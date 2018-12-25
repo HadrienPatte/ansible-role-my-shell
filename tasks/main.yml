@@ -19,6 +19,7 @@
       - traceroute
       - autojump
       - python3-dev
+      - python-setuptools  # Required to use ansible pip module
     state: present
   register: apt_result
   until: apt_result is succeeded

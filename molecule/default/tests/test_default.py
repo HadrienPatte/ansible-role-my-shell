@@ -24,6 +24,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     ('traceroute'),
     ('autojump'),
     ('python3-dev'),
+    ('python-setuptools'),
 ])
 def test_apt_package_is_installed(host, name):
     package = host.package(name)
