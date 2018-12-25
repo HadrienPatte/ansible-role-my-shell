@@ -2,6 +2,6 @@
 - name: Install shell utilities and deploy various dotfiles
   hosts: all
   roles:
-    - role: hadrienpatte.my-shell
+    - role: ansible-role-my-shell
   vars:
     ansible_user: test-user

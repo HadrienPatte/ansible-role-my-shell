@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: my-shell
+  role_name: my_shell
   author: Hadrien Patte
   company: ""
   description: Install shell utilities and deploy various dotfiles

@@ -20,7 +20,7 @@ None.
 - name: Install shell utilities and deploy various dotfiles
   hosts: all
   roles:
-    - hadrienpatte.my-shell
+    - hadrienpatte.my_shell
 ```
 
 ## License
