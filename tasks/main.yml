@@ -17,6 +17,7 @@
       - cmatrix
       - cowsay
       - traceroute
+      - autojump
     state: present
 
 - name: Copy .bashrc

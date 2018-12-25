@@ -22,6 +22,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     ('cmatrix'),
     ('cowsay'),
     ('traceroute'),
+    ('autojump'),
 ])
 def test_package_is_installed(host, name):
     package = host.package(name)
