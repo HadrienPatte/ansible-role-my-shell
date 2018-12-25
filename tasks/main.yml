@@ -18,7 +18,20 @@
       - cowsay
       - traceroute
       - autojump
+      - python3-dev
     state: present
+
+- name: Download get-pip
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+  delegate_to: localhost
+
+- name: Install pip
+  script: /tmp/get-pip.py --user
+  args:
+    executable: python3
+    creates: "{{ ansible_env.HOME }}/.local/bin/pip"
 
 - name: Copy .bashrc
   copy:
