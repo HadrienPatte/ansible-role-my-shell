@@ -25,6 +25,11 @@
     dest: "{{ ansible_env.HOME }}/.bashrc"
     mode: 0600
 
+- name: Copy .bash_colors
+  copy:
+    src: bash_colors
+    dest: "{{ ansible_env.HOME }}/.bash_colors"
+
 - name: Copy .inputrc
   copy:
     src: inputrc
