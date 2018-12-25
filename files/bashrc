@@ -37,6 +37,15 @@ HISTTIMEFORMAT=`echo -e $HISTORY_COLOR_LWHITE[%F %T] $HISTORY_COLOR_NORMAL `
 HISTIGNORE='cd:ls:ll:la:l:pwd'
 unset HISTORY_COLOR_LWHITE HISTORY_COLOR_NORMAL
 
+# Set the default editor
+if [ -x $(which vim) ]; then
+    VISUAL=vim
+    EDITOR=$VISUAL
+fi
+
+# Add local bin to Path
+PATH="$HOME/.local/bin:$PATH"
+
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
