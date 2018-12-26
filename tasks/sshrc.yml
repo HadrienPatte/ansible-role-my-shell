@@ -16,9 +16,10 @@
     dest: "{{ ansible_env.HOME }}/.sshrc"
 
 - name: Copy dotfiles to .sshrc.d
-  copy:
-    src: "{{ item }}"
-    dest: "{{ ansible_env.HOME }}/.sshrc.d/"
+  file:
+    src: "{{ ansible_env.HOME }}/.{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.sshrc.d/{{ item }}"
+    state: link
   loop:
     - bashrc
     - bash_colors
