@@ -53,24 +53,17 @@
     dest: "{{ ansible_env.HOME }}/.local/bin/pipenvwrapper.sh"
     mode: 0755
 
+- name: Copy dotfiles
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.{{ item }}"
+  loop:
+    - bashrc
+    - bash_colors
+    - inputrc
+
 - name: Install and configure sshrc
   include_tasks: sshrc.yml
-
-- name: Copy .bashrc
-  copy:
-    src: bashrc
-    dest: "{{ ansible_env.HOME }}/.bashrc"
-    mode: 0600
-
-- name: Copy .bash_colors
-  copy:
-    src: bash_colors
-    dest: "{{ ansible_env.HOME }}/.bash_colors"
-
-- name: Copy .inputrc
-  copy:
-    src: inputrc
-    dest: "{{ ansible_env.HOME }}/.inputrc"
 
 - name: Configure sudo insults
   become: true
