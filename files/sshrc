@@ -1,0 +1,9 @@
+if [ -f $SSHHOME/.sshrc.d/bash_colors ]; then
+    . $SSHHOME/.sshrc.d/bash_colors
+fi
+
+if [ -f $SSHHOME/.sshrc.d/bashrc ]; then
+    . $SSHHOME/.sshrc.d/bashrc
+fi
+
+INPUTRC=$SSHHOME/.sshrc.d/inputrc
