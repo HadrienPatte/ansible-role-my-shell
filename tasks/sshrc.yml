@@ -5,9 +5,9 @@
     dest: "{{ ansible_env.HOME }}/.local/bin/sshrc"
     mode: 0755
 
-- name: Create .sshrc.d directory
+- name: Create .sshrc.d and .sshrc.d/bashrc.d directories
   file:
-    path: "{{ ansible_env.HOME }}/.sshrc.d"
+    path: "{{ ansible_env.HOME }}/.sshrc.d/bashrc.d"
     state: directory
 
 - name: Copy .sshrc
@@ -25,4 +25,8 @@
     - bash_colors
     - bash_aliases
     - inputrc
+    - bashrc.d/autojump
+    - bashrc.d/pipenv
+    - bashrc.d/virtualenvwrapper
+    - bashrc.d/pipenvwrapper
 ...

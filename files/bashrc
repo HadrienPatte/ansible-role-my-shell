@@ -168,30 +168,8 @@ if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found ]; then
     }
 fi
 
-AUTOJUMP=/usr/share/autojump/autojump.bash
-if [ -f $AUTOJUMP ]; then
-    . $AUTOJUMP
+if [ -d $HOME/.bashrc.d ]; then
+    for file in $HOME/.bashrc.d/*; do
+        . $file
+    done
 fi
-unset AUTOJUMP
-
-if [ -f $(which pipenv) ]; then
-    eval "$(pipenv --completion)"
-fi
-
-VIRTUALENVWRAPPER=$HOME/.local/bin/virtualenvwrapper.sh
-if [ -f $VIRTUALENVWRAPPER ]; then
-    WORKON_HOME=$HOME/.virtualenvs
-    PROJECT_HOME=$HOME/Documents/Projets
-    VIRTUALENVWRAPPER_PYTHON=$(which python3)
-    . $VIRTUALENVWRAPPER
-fi
-unset VIRTUALENVWRAPPER
-
-PIPENVWRAPPER=$HOME/.local/bin/pipenvwrapper.sh
-if [ -f $PIPENVWRAPPER ]; then
-    WORKON_HOME=$HOME/.virtualenvs
-    PROJECT_HOME=$HOME/Documents/Projets
-    # PIPENVWRAPPER_USE_VIRTUALENVWRAPPER_FUNCTION_NAMES=1
-    . $PIPENVWRAPPER
-fi
-unset PIPENVWRAPPER
