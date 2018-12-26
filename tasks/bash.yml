@@ -6,7 +6,7 @@
 
 - name: Copy dotfiles
   copy:
-    src: "{{ item }}"
+    src: "{{ item }}.sh"
     dest: "{{ ansible_env.HOME }}/.{{ item }}"
   loop:
     - bashrc

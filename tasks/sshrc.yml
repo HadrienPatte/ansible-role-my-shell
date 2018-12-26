@@ -12,7 +12,7 @@
 
 - name: Copy .sshrc
   copy:
-    src: sshrc
+    src: sshrc.sh
     dest: "{{ ansible_env.HOME }}/.sshrc"
 
 - name: Simlink dotfiles to .sshrc.d
