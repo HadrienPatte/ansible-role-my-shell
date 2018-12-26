@@ -17,6 +17,7 @@
     - bashrc.d/pipenv
     - bashrc.d/virtualenvwrapper
     - bashrc.d/pipenvwrapper
+    - bashrc.d/bash_git_prompt
 
 - name: Configure sudo insults
   become: true

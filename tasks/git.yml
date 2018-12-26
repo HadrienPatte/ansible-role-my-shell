@@ -1,0 +1,9 @@
+---
+- name: Clone bash-git-prompt
+  git:
+    clone: true
+    repo: https://github.com/magicmonty/bash-git-prompt.git
+    dest: "{{ ansible_env.HOME }}/.bash-git-prompt"
+    depth: 1
+    version: master
+...
