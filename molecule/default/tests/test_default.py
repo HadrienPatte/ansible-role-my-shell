@@ -24,6 +24,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     ('traceroute'),
     ('autojump'),
     ('python3-dev'),
+    ('python-setuptools'),
 ])
 def test_apt_package_is_installed(host, name):
     package = host.package(name)
@@ -32,6 +33,9 @@ def test_apt_package_is_installed(host, name):
 
 @pytest.mark.parametrize('name', [
     ('pip'),
+    ('pipenv'),
+    ('virtualenvwrapper.sh'),
+    ('pipenvwrapper.sh'),
 ])
 def test_pip_package_is_installed(host, name):
     package = host.file('/home/test-user/.local/bin/' + name)

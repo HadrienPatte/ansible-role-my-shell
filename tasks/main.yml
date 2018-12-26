@@ -19,6 +19,7 @@
       - traceroute
       - autojump
       - python3-dev
+      - python-setuptools  # Required to use ansible pip module
     state: present
   register: apt_result
   until: apt_result is succeeded
@@ -35,6 +36,22 @@
   args:
     executable: python3
     creates: "{{ ansible_env.HOME }}/.local/bin/pip"
+
+- name: Install pip packages
+  pip:
+    name:
+      - pipenv
+      - virtualenvwrapper
+    state: present
+    executable: "{{ ansible_env.HOME }}/.local/bin/pip3"
+    extra_args: --user
+
+- name: Install pipenvwrapper
+  get_url:
+    url: "https://raw.githubusercontent.com/Peibolvig/pipenvwrapper/master/\
+      pipenvwrapper.sh"
+    dest: "{{ ansible_env.HOME }}/.local/bin/pipenvwrapper.sh"
+    mode: 0755
 
 - name: Copy .bashrc
   copy:
