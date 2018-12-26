@@ -36,8 +36,9 @@ def test_apt_package_is_installed(host, name):
     ('pipenv'),
     ('virtualenvwrapper.sh'),
     ('pipenvwrapper.sh'),
+    ('sshrc'),
 ])
-def test_pip_package_is_installed(host, name):
+def test_package_is_installed(host, name):
     package = host.file('/home/test-user/.local/bin/' + name)
     assert package.exists
     assert package.is_file

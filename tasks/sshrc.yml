@@ -1,0 +1,32 @@
+---
+- name: Install sshrc
+  get_url:
+    url: https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc
+    dest: "{{ ansible_env.HOME }}/.local/bin/sshrc"
+    mode: 0755
+
+- name: Create .sshrc.d and .sshrc.d/bashrc.d directories
+  file:
+    path: "{{ ansible_env.HOME }}/.sshrc.d/bashrc.d"
+    state: directory
+
+- name: Copy .sshrc
+  copy:
+    src: sshrc
+    dest: "{{ ansible_env.HOME }}/.sshrc"
+
+- name: Simlink dotfiles to .sshrc.d
+  file:
+    src: "{{ ansible_env.HOME }}/.{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.sshrc.d/{{ item }}"
+    state: link
+  loop:
+    - bashrc
+    - bash_colors
+    - bash_aliases
+    - inputrc
+    - bashrc.d/autojump
+    - bashrc.d/pipenv
+    - bashrc.d/virtualenvwrapper
+    - bashrc.d/pipenvwrapper
+...

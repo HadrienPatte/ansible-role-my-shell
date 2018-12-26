@@ -1,0 +1,55 @@
+---
+- name: Install CLI utilities
+  become: true
+  apt:
+    update_cache: true
+    name:
+      - git
+      - vim
+      - htop
+      - ncdu
+      - nmap
+      - sshuttle
+      - p7zip-full
+      - gnupg2
+      - unrar
+      - sl
+      - cmatrix
+      - cowsay
+      - traceroute
+      - autojump
+      - python3-dev
+      - python-setuptools  # Required to use ansible pip module
+    state: present
+  register: apt_result
+  until: apt_result is succeeded
+  retries: 3
+
+- name: Download get-pip
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: /tmp/get-pip.py
+  delegate_to: localhost
+
+- name: Install pip
+  script: /tmp/get-pip.py --user
+  args:
+    executable: python3
+    creates: "{{ ansible_env.HOME }}/.local/bin/pip"
+
+- name: Install pip packages
+  pip:
+    name:
+      - pipenv
+      - virtualenvwrapper
+    state: present
+    executable: "{{ ansible_env.HOME }}/.local/bin/pip3"
+    extra_args: --user
+
+- name: Install pipenvwrapper
+  get_url:
+    url: "https://raw.githubusercontent.com/Peibolvig/pipenvwrapper/master/\
+      pipenvwrapper.sh"
+    dest: "{{ ansible_env.HOME }}/.local/bin/pipenvwrapper.sh"
+    mode: 0755
+...

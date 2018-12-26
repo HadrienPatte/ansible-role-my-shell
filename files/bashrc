@@ -15,26 +15,26 @@ fi
 
 # Don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth:erasedups
 
 # Append to the history file, don't overwrite it
 shopt -s histappend
 
 # For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=
-HISTFILESIZE=
+HISTSIZE=1000000000
+HISTFILESIZE=1000000000
 
 # Use an unlimited history file
-HISTFILE=~/.bash_eternal_history
+# HISTFILE=~/.bash_eternal_history
 
 # Force prompt to write history after every command.
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; history -n; "
 
 # History appearance
 HISTORY_COLOR_LWHITE="\033[1;37m"
 HISTORY_COLOR_NORMAL="\033[00m"
 HISTTIMEFORMAT=`echo -e $HISTORY_COLOR_LWHITE[%F %T] $HISTORY_COLOR_NORMAL `
-HISTIGNORE='cd:ls:ll:la:l:pwd'
+HISTIGNORE='cd:ls:ll:la:l:pwd:e:ssu:h:a:s:gl:..'
 unset HISTORY_COLOR_LWHITE HISTORY_COLOR_NORMAL
 
 # Set the default editor
@@ -87,7 +87,11 @@ if [ "$color_prompt" = yes ]; then
     if [[ "$USER" == "root" ]]; then
         PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LRED}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`#${NORMAL} "
     else
-        PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LMAGENTA}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`\$${NORMAL} "
+        if [ -z $SSHHOME ]; then
+            PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LMAGENTA}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`\$${NORMAL} "
+        else
+            PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LGREEN}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`\$${NORMAL} "
+        fi
     fi
 else
     PS1="${debian_chroot:+($debian_chroot)}<\t>[\u@\h:\w]\$ "
@@ -133,13 +137,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-alias e='exit'
-alias ssu='sudo -sE'
-alias h='history'
-alias a='atom .'
-alias s='git status'
-alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -171,30 +168,8 @@ if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found ]; then
     }
 fi
 
-AUTOJUMP=/usr/share/autojump/autojump.bash
-if [ -f $AUTOJUMP ]; then
-    . $AUTOJUMP
+if [ -d $HOME/.bashrc.d ]; then
+    for file in $HOME/.bashrc.d/*; do
+        . $file
+    done
 fi
-unset AUTOJUMP
-
-if [ -f $(which pipenv) ]; then
-    eval "$(pipenv --completion)"
-fi
-
-VIRTUALENVWRAPPER=$HOME/.local/bin/virtualenvwrapper.sh
-if [ -f $VIRTUALENVWRAPPER ]; then
-    WORKON_HOME=$HOME/.virtualenvs
-    PROJECT_HOME=$HOME/Documents/Projets
-    VIRTUALENVWRAPPER_PYTHON=$(which python3)
-    . $VIRTUALENVWRAPPER
-fi
-unset VIRTUALENVWRAPPER
-
-PIPENVWRAPPER=$HOME/.local/bin/pipenvwrapper.sh
-if [ -f $PIPENVWRAPPER ]; then
-    WORKON_HOME=$HOME/.virtualenvs
-    PROJECT_HOME=$HOME/Documents/Projets
-    # PIPENVWRAPPER_USE_VIRTUALENVWRAPPER_FUNCTION_NAMES=1
-    . $PIPENVWRAPPER
-fi
-unset PIPENVWRAPPER
