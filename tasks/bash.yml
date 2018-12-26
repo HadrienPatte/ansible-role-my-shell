@@ -1,0 +1,19 @@
+---
+- name: Copy dotfiles
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.{{ item }}"
+  loop:
+    - bashrc
+    - bash_colors
+    - inputrc
+
+- name: Configure sudo insults
+  become: true
+  lineinfile:
+    path: /etc/sudoers
+    regexp: ^Defaults        insults
+    insertafter: ^Defaults
+    line: Defaults        insults
+    validate: /usr/sbin/visudo -cf %s
+...
