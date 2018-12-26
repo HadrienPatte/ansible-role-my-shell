@@ -6,4 +6,9 @@
     dest: "{{ ansible_env.HOME }}/.bash-git-prompt"
     depth: 1
     version: master
+
+- name: Copy bash-git-prompt custom theme
+  copy:
+    src: git-prompt-colors.sh
+    dest: "{{ ansible_env.HOME }}/.git-prompt-colors.sh"
 ...
