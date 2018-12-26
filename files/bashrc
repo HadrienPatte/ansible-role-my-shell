@@ -137,13 +137,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-alias e='exit'
-alias ssu='sudo -sE'
-alias h='history'
-alias a='atom .'
-alias s='git status'
-alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi

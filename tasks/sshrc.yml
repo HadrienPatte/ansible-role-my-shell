@@ -23,5 +23,6 @@
   loop:
     - bashrc
     - bash_colors
+    - bash_aliases
     - inputrc
 ...

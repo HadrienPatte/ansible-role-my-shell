@@ -6,4 +6,8 @@ if [ -f $SSHHOME/.sshrc.d/bashrc ]; then
     . $SSHHOME/.sshrc.d/bashrc
 fi
 
+if [ -f $SSHHOME/.sshrc.d/bash_aliases ]; then
+    . $SSHHOME/.sshrc.d/bash_aliases
+fi
+
 INPUTRC=$SSHHOME/.sshrc.d/inputrc
