@@ -1,0 +1,7 @@
+---
+- name: Install sshrc
+  get_url:
+    url: https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc
+    dest: "{{ ansible_env.HOME }}/.local/bin/sshrc"
+    mode: 0755
+...
