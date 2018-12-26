@@ -87,7 +87,11 @@ if [ "$color_prompt" = yes ]; then
     if [[ "$USER" == "root" ]]; then
         PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LRED}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`#${NORMAL} "
     else
-        PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LMAGENTA}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`\$${NORMAL} "
+        if [ -z $SSHHOME ]; then
+            PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LMAGENTA}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`\$${NORMAL} "
+        else
+            PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LGREEN}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`\$${NORMAL} "
+        fi
     fi
 else
     PS1="${debian_chroot:+($debian_chroot)}<\t>[\u@\h:\w]\$ "
