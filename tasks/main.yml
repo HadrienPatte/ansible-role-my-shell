@@ -10,4 +10,8 @@
 
 - name: Install and configure sshrc
   include_tasks: sshrc.yml
+
+- name: Build hosts file
+  include_tasks: hosts.yml
+  tags: molecule-notest
 ...
