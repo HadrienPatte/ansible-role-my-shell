@@ -18,6 +18,21 @@ See the `my_shell_git_config` variable in `defaults/main.yml` to further
 configure git.
 
 
+* `my_shell_add_hosts_from_inventory`: set this to `true` to automatically add
+hosts from your inventory file to your `/etc/hosts` file. Your inventory file
+should have a structure similar to this:
+
+```yaml
+---
+all:
+  hosts:
+    my_host_1:
+      ansible_host: 10.0.0.1
+    my_host_2:
+      ansible_host: 10.0.0.2
+```
+
+
 # Dependencies
 
 None.
