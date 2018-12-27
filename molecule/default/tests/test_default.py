@@ -35,6 +35,7 @@ vars.update(playbook[0]['vars'])
     ('autojump'),
     ('python3-dev'),
     ('python-setuptools'),
+    ('undistract-me'),
 ])
 def test_apt_package_is_installed(host, name):
     package = host.package(name)
