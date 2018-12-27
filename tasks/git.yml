@@ -1,0 +1,23 @@
+---
+- name: Configure git
+  ini_file:
+    path: "{{ ansible_env.HOME }}/.gitconfig"
+    section: "{{ item.section }}"
+    option: "\t{{ item.option }}"
+    value: "{{ item.value }}"
+  loop: "{{ my_shell_git_config }}"
+  when: item.value | length > 0
+
+- name: Clone bash-git-prompt
+  git:
+    clone: true
+    repo: https://github.com/magicmonty/bash-git-prompt.git
+    dest: "{{ ansible_env.HOME }}/.bash-git-prompt"
+    depth: 1
+    version: master
+
+- name: Copy bash-git-prompt custom theme
+  copy:
+    src: git-prompt-colors.sh
+    dest: "{{ ansible_env.HOME }}/.git-prompt-colors.sh"
+...

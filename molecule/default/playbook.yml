@@ -5,3 +5,7 @@
     - role: ansible-role-my-shell
   vars:
     ansible_user: test-user
+    ansible_env:
+      HOME: /home/test-user
+    my_shell_git_key_fingerprint: 0123456789ABCDEF0123456789ABCDEF01234567
+...

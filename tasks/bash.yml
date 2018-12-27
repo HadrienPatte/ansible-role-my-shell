@@ -6,7 +6,7 @@
 
 - name: Copy dotfiles
   copy:
-    src: "{{ item }}"
+    src: "{{ item }}.sh"
     dest: "{{ ansible_env.HOME }}/.{{ item }}"
   loop:
     - bashrc
@@ -17,6 +17,7 @@
     - bashrc.d/pipenv
     - bashrc.d/virtualenvwrapper
     - bashrc.d/pipenvwrapper
+    - bashrc.d/bash_git_prompt
 
 - name: Configure sudo insults
   become: true

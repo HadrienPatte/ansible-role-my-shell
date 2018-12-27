@@ -1,0 +1,22 @@
+---
+my_shell_git_username: Your name
+my_shell_git_email: user@example.com
+# my_shell_git_key_fingerprint:
+
+my_shell_git_config:
+  - section: user
+    option: name
+    value: "{{ my_shell_git_username }}"
+
+  - section: user
+    option: email
+    value: "{{ my_shell_git_email }}"
+
+  - section: user
+    option: signingkey
+    value: "{{ my_shell_git_key_fingerprint | default(None) }}"
+
+  - section: commit
+    option: gpgsign
+    value: "{{ my_shell_git_key_fingerprint is defined | lower }}"
+...

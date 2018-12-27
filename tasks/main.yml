@@ -2,6 +2,9 @@
 - name: Install packages
   include_tasks: install.yml
 
+- name: Configure git
+  include_tasks: git.yml
+
 - name: Configure bash
   include_tasks: bash.yml
 
