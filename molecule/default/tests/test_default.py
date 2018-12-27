@@ -1,11 +1,15 @@
-import os
-
-import pytest
-
-import testinfra.utils.ansible_runner
+import testinfra.utils.ansible_runner, os, pytest, yaml
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+
+with open('../../defaults/main.yml') as vars_yml:
+    vars = yaml.load(vars_yml)
+
+with open('playbook.yml') as playbook_yml:
+    playbook = yaml.load(playbook_yml)
+
+vars.update(playbook[0]['vars'])
 
 
 @pytest.mark.parametrize('name', [
@@ -39,12 +43,28 @@ def test_apt_package_is_installed(host, name):
     ('sshrc'),
 ])
 def test_package_is_installed(host, name):
-    package = host.file('/home/test-user/.local/bin/' + name)
+    package = host.file(vars['ansible_env']['HOME'] + '/.local/bin/' + name)
     assert package.exists
     assert package.is_file
 
 
 @pytest.mark.parametrize('line, path', [
+    (
+        'name = ' + vars['my_shell_git_username'],
+        vars['ansible_env']['HOME'] + '/.gitconfig'
+    ),
+    (
+        'email = ' + vars['my_shell_git_email'],
+        vars['ansible_env']['HOME'] + '/.gitconfig'
+    ),
+    (
+        'signingkey = ' + vars['my_shell_git_key_fingerprint'],
+        vars['ansible_env']['HOME'] + '/.gitconfig'
+    ),
+    (
+        'gpgsign = true',
+        vars['ansible_env']['HOME'] + '/.gitconfig'
+    ),
     ('Defaults        insults', '/etc/sudoers'),
 ])
 def test_line_is_in_file(host, line, path):
