@@ -1,4 +1,13 @@
 ---
+- name: Configure git
+  ini_file:
+    path: "{{ ansible_env.HOME }}/.gitconfig"
+    section: "{{ item.section }}"
+    option: "\t{{ item.option }}"
+    value: "{{ item.value }}"
+  loop: "{{ my_shell_git_config }}"
+  when: item.value | length > 0
+
 - name: Clone bash-git-prompt
   git:
     clone: true
