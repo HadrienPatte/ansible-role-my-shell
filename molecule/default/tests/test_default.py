@@ -1,4 +1,10 @@
-import testinfra.utils.ansible_runner, os, pytest, yaml
+import testinfra.utils.ansible_runner
+
+import os
+
+import pytest
+
+import yaml
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
