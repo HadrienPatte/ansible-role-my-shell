@@ -1,0 +1,3 @@
+Host *
+     User {{ my_shell_ssh_user }}
+     IdentityFile {{ my_shell_ssh_key | default(ansible_env.HOME + '/.ssh/id_rsa') }}

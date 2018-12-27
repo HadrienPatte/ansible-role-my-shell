@@ -9,6 +9,8 @@ None.
 
 ## Role Variables
 
+### Git Variables
+
 * `my_shell_git_username`: the name used to author your commits
 * `my_shell_git_email`: the email used to author your commits
 * `my_shell_git_key_fingerprint`: the fingerpring of the GPG key used to sign
@@ -17,6 +19,7 @@ your commits (can be left undefined)
 See the `my_shell_git_config` variable in `defaults/main.yml` to further
 configure git.
 
+### Hosts file Variables
 
 * `my_shell_add_hosts_from_inventory`: set this to `true` to automatically add
 hosts from your inventory file to your `/etc/hosts` file. Your inventory file
@@ -32,6 +35,11 @@ all:
       ansible_host: 10.0.0.2
 ```
 
+### SSH Variables
+
+* `my_shell_ssh_user`: your username when login on remote servers by SSH
+* `my_shell_ssh_key`: location of your main SSH key (optional, defaults to
+`~/.ssh/id_rsa`)
 
 # Dependencies
 
