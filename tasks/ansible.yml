@@ -3,6 +3,7 @@
   pip:
     name: ansible
     state: present
-    executable: "{{ ansible_env.HOME }}/.local/bin/pip3"
-    extra_args: --user
+    virtualenv: "{{ ansible_env.HOME }}/.virtualenvs/a"
+    virtualenv_command: "{{ ansible_env.HOME }}/.local/bin/virtualenv"
+    virtualenv_python: python3
 ...

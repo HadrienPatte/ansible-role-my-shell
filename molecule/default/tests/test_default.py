@@ -48,10 +48,19 @@ def test_apt_package_is_installed(host, name):
     ('virtualenvwrapper.sh'),
     ('pipenvwrapper.sh'),
     ('sshrc'),
-    ('ansible'),
 ])
 def test_package_is_installed(host, name):
     package = host.file(vars['ansible_env']['HOME'] + '/.local/bin/' + name)
+    assert package.exists
+    assert package.is_file
+
+
+@pytest.mark.parametrize('name, env', [
+    ('ansible', 'a'),
+])
+def test_package_is_installed_in_virtualenv(host, name, env):
+    package = host.file(vars['ansible_env']['HOME'] + '/.virtualenvs/' + env +
+                        '/bin/' + name)
     assert package.exists
     assert package.is_file
 
