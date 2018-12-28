@@ -21,6 +21,17 @@ your commits (can be left undefined)
 See the `my_shell_git_config` variable in `defaults/main.yml` to further
 configure git.
 
+### Ansible Variables
+
+* `my_shell_ansible_forks`: number of forks ansible should use
+* `my_shell_ansible_callback_whitelist`: callback plugins to whitelist
+* `my_shell_ansible_cows`: set this to `false` to prevent ansible to render its
+output throught `cowsay` when it is installed
+* `my_shell_ansible_pipelining`: set this to true to enable ansible pipelining
+
+See the `my_shell_ansible_config` variable in `defaults/main.yml` to further
+configure ansible.
+
 ### Hosts file Variables
 
 * `my_shell_add_hosts_from_inventory`: set this to `true` to automatically add

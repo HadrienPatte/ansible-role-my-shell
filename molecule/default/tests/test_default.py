@@ -67,6 +67,22 @@ def test_package_is_installed_in_virtualenv(host, name, env):
 
 @pytest.mark.parametrize('line, path', [
     (
+        'forks = ' + str(vars['my_shell_ansible_forks']),
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'callback_whitelist = ' + vars['my_shell_ansible_callback_whitelist'],
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'nocows = 0',
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'pipelining = False',
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
         'name = ' + vars['my_shell_git_username'],
         vars['ansible_env']['HOME'] + '/.gitconfig'
     ),
