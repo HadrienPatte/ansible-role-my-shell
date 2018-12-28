@@ -1,0 +1,8 @@
+---
+- name: Install ansible
+  pip:
+    name: ansible
+    state: present
+    executable: "{{ ansible_env.HOME }}/.local/bin/pip3"
+    extra_args: --user
+...

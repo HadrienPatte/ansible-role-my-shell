@@ -48,6 +48,7 @@ def test_apt_package_is_installed(host, name):
     ('virtualenvwrapper.sh'),
     ('pipenvwrapper.sh'),
     ('sshrc'),
+    ('ansible'),
 ])
 def test_package_is_installed(host, name):
     package = host.file(vars['ansible_env']['HOME'] + '/.local/bin/' + name)
