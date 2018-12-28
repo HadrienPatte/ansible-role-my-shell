@@ -99,6 +99,10 @@ def test_package_is_installed_in_virtualenv(host, name, env):
         vars['ansible_env']['HOME'] + '/.gitconfig'
     ),
     ('Defaults        insults', '/etc/sudoers'),
+    (
+        'IdentityFile ' + vars['ansible_env']['HOME'] + '/.ssh/id_rsa',
+        vars['ansible_env']['HOME'] + '/.ssh/config'
+    ),
 ])
 def test_line_is_in_file(host, line, path):
     file = host.file(path)
