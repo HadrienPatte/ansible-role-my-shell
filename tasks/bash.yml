@@ -4,6 +4,14 @@
     path: "{{ ansible_env.HOME }}/.bashrc.d/"
     state: directory
 
+- name: Clone the Awesome Ultimate Vim configuration
+  git:
+    clone: true
+    repo: https://github.com/amix/vimrc.git
+    dest: "{{ ansible_env.HOME }}/.vim_runtime"
+    depth: 1
+    version: master
+
 - name: Copy dotfiles
   copy:
     src: "{{ item }}.sh"
@@ -13,6 +21,7 @@
     - bash_colors
     - bash_aliases
     - inputrc
+    - vimrc
     - bashrc.d/autojump
     - bashrc.d/pipenv
     - bashrc.d/virtualenvwrapper
