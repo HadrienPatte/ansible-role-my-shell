@@ -16,4 +16,13 @@
     regexp: "{{ my_shell_gpg_keygrip }}"
     line: "{{ my_shell_gpg_keygrip }}"
     insertafter: EOF
+
+- name: Register public key
+  shell: ssh-add -L | grep none
+  changed_when: false
+  register: ssh_key
+
+- name: Display public key
+  debug:
+    var: ssh_key.stdout_lines
 ...
