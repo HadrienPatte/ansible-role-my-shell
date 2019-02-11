@@ -9,6 +9,7 @@ my_shell_git_email: user@example.com
 # my_shell_git_key_fingerprint:
 
 # my_shell_gpg_keygrip:
+my_shell_gpg_cache_ttl_ssh: 86400
 
 my_shell_ansible_forks: 5
 my_shell_ansible_callback_whitelist: timer, mail

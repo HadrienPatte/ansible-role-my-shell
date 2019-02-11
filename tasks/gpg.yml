@@ -5,8 +5,8 @@
     dest: "{{ ansible_env.HOME }}/.bashrc.d/gpg"
 
 - name: Copy gpg-agent configuration file
-  copy:
-    src: gpg-agent.conf
+  template:
+    src: gpg-agent.conf.j2
     dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf"
 
 - name: Add GPG keygrip
