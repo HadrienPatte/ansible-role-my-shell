@@ -22,9 +22,8 @@ See the `my_shell_git_config` variable in `defaults/main.yml` to further
 configure git.
 ### GPG variables
 
-* `my_shell_gpg_keygrip`: if defined, gpg-agent will be configured to use the
-  associated GPG key as a SSH key (the public key can be obtained with
-  `ssh-add -L`)
+* `my_shell_gpg_keygrip`: list of GPG keygrip, if defined gpg-agent will be
+  configured to use the associated GPG keys as a SSH keys
 * `my_shell_gpg_cache_ttl_ssh`: time a cache entry is valid in seconds, defaults
   to one day (86400 seconds)
 

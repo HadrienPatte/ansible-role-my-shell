@@ -13,16 +13,17 @@
   lineinfile:
     path: "{{ ansible_env.HOME }}/.gnupg/sshcontrol"
     state: present
-    regexp: "{{ my_shell_gpg_keygrip }}"
-    line: "{{ my_shell_gpg_keygrip }}"
+    regexp: "{{ item }}"
+    line: "{{ item }}"
     insertafter: EOF
+  loop: "{{ my_shell_gpg_keygrip }}"
 
-- name: Register public key
+- name: Register public keys
   shell: ssh-add -L | grep none
   changed_when: false
   register: ssh_key
 
-- name: Display public key
+- name: Display public keys
   debug:
     var: ssh_key.stdout_lines
 ...
