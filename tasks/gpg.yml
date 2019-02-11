@@ -1,0 +1,19 @@
+---
+- name: Configure bash to use gpg-agent
+  copy:
+    src: bashrc.d/gpg.sh
+    dest: "{{ ansible_env.HOME }}/.bashrc.d/gpg"
+
+- name: Copy gpg-agent configuration file
+  copy:
+    src: gpg-agent.conf
+    dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf"
+
+- name: Add GPG keygrip
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.gnupg/sshcontrol"
+    state: present
+    regexp: "{{ my_shell_gpg_keygrip }}"
+    line: "{{ my_shell_gpg_keygrip }}"
+    insertafter: EOF
+...

@@ -15,6 +15,10 @@
   include_tasks: hosts.yml
   tags: molecule-notest
 
+- name: Configure gpg
+  include_tasks: gpg.yml
+  when: my_shell_gpg_keygrip is defined
+
 - name: Configure ssh
   include_tasks: ssh.yml
 
