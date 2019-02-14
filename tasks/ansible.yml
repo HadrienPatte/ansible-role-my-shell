@@ -1,7 +1,9 @@
 ---
-- name: Install ansible
+- name: Install ansible and mitogen
   pip:
-    name: ansible
+    name:
+      - ansible
+      - mitogen
     state: present
     virtualenv: "{{ ansible_env.HOME }}/.virtualenvs/a"
     virtualenv_command: "{{ ansible_env.HOME }}/.local/bin/virtualenv"

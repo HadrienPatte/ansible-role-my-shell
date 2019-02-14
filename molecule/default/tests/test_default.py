@@ -79,6 +79,16 @@ def test_package_is_installed_in_virtualenv(host, name, env):
         vars['ansible_env']['HOME'] + '/.ansible.cfg'
     ),
     (
+        'strategy = mitogen_linear',
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'strategy_plugins = ' + vars['ansible_env']['HOME'] +
+        '/.virtualenvs/a/lib/python3.6/site-packages/ansible_mitogen/' +
+        'plugins/strategy',
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
         'pipelining = False',
         vars['ansible_env']['HOME'] + '/.ansible.cfg'
     ),

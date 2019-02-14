@@ -26,6 +26,15 @@ my_shell_ansible_config:
     option: nocows
     value: "{{ 0 if my_shell_ansible_cows else 1 }}"
 
+  - section: defaults
+    option: strategy
+    value: mitogen_linear
+
+  - section: defaults
+    option: strategy_plugins
+    value: "{{ ansible_env.HOME }}/.virtualenvs/a/lib/python3.6/site-packages/\
+      ansible_mitogen/plugins/strategy"
+
   - section: ssh_connection
     option: pipelining
     value: "{{ my_shell_ansible_pipelining }}"

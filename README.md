@@ -27,7 +27,7 @@ configure git.
 * `my_shell_ansible_callback_whitelist`: callback plugins to whitelist
 * `my_shell_ansible_cows`: set this to `false` to prevent ansible to render its
 output throught `cowsay` when it is installed
-* `my_shell_ansible_pipelining`: set this to true to enable ansible pipelining
+* `my_shell_ansible_pipelining`: set this to `true` to enable ansible pipelining
 
 See the `my_shell_ansible_config` variable in `defaults/main.yml` to further
 configure ansible.
