@@ -1,5 +1,7 @@
 # Ansible Role: My Shell
 
+[![Build Status](https://travis-ci.com/HadrienPatte/ansible-role-my-shell.svg?branch=master)](https://travis-ci.com/HadrienPatte/ansible-role-my-shell)
+
 An Ansible Role that installs shell utilities and deploy various dotfiles on
 Ubuntu 18.04.
 
@@ -18,6 +20,17 @@ your commits (can be left undefined)
 
 See the `my_shell_git_config` variable in `defaults/main.yml` to further
 configure git.
+
+### Ansible Variables
+
+* `my_shell_ansible_forks`: number of forks ansible should use
+* `my_shell_ansible_callback_whitelist`: callback plugins to whitelist
+* `my_shell_ansible_cows`: set this to `false` to prevent ansible to render its
+output throught `cowsay` when it is installed
+* `my_shell_ansible_pipelining`: set this to `true` to enable ansible pipelining
+
+See the `my_shell_ansible_config` variable in `defaults/main.yml` to further
+configure ansible.
 
 ### Hosts file Variables
 

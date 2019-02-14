@@ -55,7 +55,43 @@ def test_package_is_installed(host, name):
     assert package.is_file
 
 
+@pytest.mark.parametrize('name, env', [
+    ('ansible', 'a'),
+])
+def test_package_is_installed_in_virtualenv(host, name, env):
+    package = host.file(vars['ansible_env']['HOME'] + '/.virtualenvs/' + env +
+                        '/bin/' + name)
+    assert package.exists
+    assert package.is_file
+
+
 @pytest.mark.parametrize('line, path', [
+    (
+        'forks = ' + str(vars['my_shell_ansible_forks']),
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'callback_whitelist = ' + vars['my_shell_ansible_callback_whitelist'],
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'nocows = 0',
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'strategy = mitogen_linear',
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'strategy_plugins = ' + vars['ansible_env']['HOME'] +
+        '/.virtualenvs/a/lib/python3.6/site-packages/ansible_mitogen/' +
+        'plugins/strategy',
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
+    (
+        'pipelining = False',
+        vars['ansible_env']['HOME'] + '/.ansible.cfg'
+    ),
     (
         'name = ' + vars['my_shell_git_username'],
         vars['ansible_env']['HOME'] + '/.gitconfig'
@@ -73,6 +109,10 @@ def test_package_is_installed(host, name):
         vars['ansible_env']['HOME'] + '/.gitconfig'
     ),
     ('Defaults        insults', '/etc/sudoers'),
+    (
+        'IdentityFile ' + vars['ansible_env']['HOME'] + '/.ssh/id_rsa',
+        vars['ansible_env']['HOME'] + '/.ssh/config'
+    ),
 ])
 def test_line_is_in_file(host, line, path):
     file = host.file(path)

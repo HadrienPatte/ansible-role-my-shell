@@ -1,0 +1,19 @@
+---
+- name: Install ansible and mitogen
+  pip:
+    name:
+      - ansible
+      - mitogen
+    state: present
+    virtualenv: "{{ ansible_env.HOME }}/.virtualenvs/a"
+    virtualenv_command: "{{ ansible_env.HOME }}/.local/bin/virtualenv"
+    virtualenv_python: python3
+
+- name: Configure ansible
+  ini_file:
+    path: "{{ ansible_env.HOME }}/.ansible.cfg"
+    section: "{{ item.section }}"
+    option: "{{ item.option }}"
+    value: "{{ item.value }}"
+  loop: "{{ my_shell_ansible_config }}"
+...

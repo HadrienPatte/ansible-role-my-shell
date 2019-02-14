@@ -8,6 +8,37 @@ my_shell_git_username: Your name
 my_shell_git_email: user@example.com
 # my_shell_git_key_fingerprint:
 
+my_shell_ansible_forks: 5
+my_shell_ansible_callback_whitelist: timer, mail
+my_shell_ansible_cows: true
+my_shell_ansible_pipelining: false
+
+my_shell_ansible_config:
+  - section: defaults
+    option: forks
+    value: "{{ my_shell_ansible_forks }}"
+
+  - section: defaults
+    option: callback_whitelist
+    value: "{{ my_shell_ansible_callback_whitelist }}"
+
+  - section: defaults
+    option: nocows
+    value: "{{ 0 if my_shell_ansible_cows else 1 }}"
+
+  - section: defaults
+    option: strategy
+    value: mitogen_linear
+
+  - section: defaults
+    option: strategy_plugins
+    value: "{{ ansible_env.HOME }}/.virtualenvs/a/lib/python3.6/site-packages/\
+      ansible_mitogen/plugins/strategy"
+
+  - section: ssh_connection
+    option: pipelining
+    value: "{{ my_shell_ansible_pipelining }}"
+
 my_shell_git_config:
   - section: user
     option: name
