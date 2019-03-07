@@ -8,6 +8,30 @@ my_shell_git_username: Your name
 my_shell_git_email: user@example.com
 # my_shell_git_key_fingerprint:
 
+my_shell_bash_aliases:
+  - alias: e
+    command: exit
+
+  - alias: ssu
+    command: sudo -sE
+
+  - alias: h
+    command: history
+
+  - alias: a
+    command: atom .
+
+  - alias: s
+    command: git status
+
+  - alias: gl
+    command: git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit
+
+  - alias: ..
+    command: cd ..
+
+my_shell_additional_bash_aliases: []
+
 my_shell_ansible_forks: 5
 my_shell_ansible_callback_whitelist: timer, mail
 my_shell_ansible_cows: true
