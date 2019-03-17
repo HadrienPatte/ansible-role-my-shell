@@ -27,7 +27,6 @@
     - bashrc.d/pipenvwrapper
     - bashrc.d/undistract-me
     - bashrc.d/bash_git_prompt
-    - bashrc.d/surc
 
 - name: Configure bash aliases
   template:
