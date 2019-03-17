@@ -29,4 +29,5 @@
     - bashrc.d/pipenv
     - bashrc.d/virtualenvwrapper
     - bashrc.d/pipenvwrapper
+    - bashrd.d/surc
 ...
