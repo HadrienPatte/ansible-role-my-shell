@@ -9,6 +9,11 @@ cache: pip
 install:
   - pip install molecule docker
 
+before_script:
+  - cd ..
+  - mv ansible-role-my-shell hadrienpatte.my_shell
+  - cd hadrienpatte.my_shell
+
 script:
   - molecule test
 

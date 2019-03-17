@@ -19,7 +19,6 @@
   loop:
     - bashrc
     - bash_colors
-    - bash_aliases
     - inputrc
     - vimrc
     - bashrc.d/autojump
@@ -28,6 +27,11 @@
     - bashrc.d/pipenvwrapper
     - bashrc.d/undistract-me
     - bashrc.d/bash_git_prompt
+
+- name: Configure bash aliases
+  template:
+    src: bash_aliases.j2
+    dest: "{{ ansible_env.HOME }}/.bash_aliases"
 
 - name: Configure sudo insults
   become: true

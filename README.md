@@ -21,6 +21,13 @@ your commits (can be left undefined)
 See the `my_shell_git_config` variable in `defaults/main.yml` to further
 configure git.
 
+### Bash variables
+
+* `my_shell_bash_aliases`: list of bash aliases (check the syntax and default
+  values in `defaults/main.yml`)
+* `my_shell_additional_bash_aliases`: list of additional bash aliases in case
+  you do not want to overload `my_shell_bash_aliases`
+
 ### Ansible Variables
 
 * `my_shell_ansible_forks`: number of forks ansible should use
