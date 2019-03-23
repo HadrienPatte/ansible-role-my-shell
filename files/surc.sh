@@ -16,3 +16,5 @@ surc () {
         )
     fi
 }
+
+alias ssu='surc'
