@@ -10,6 +10,10 @@ if [ -f $SSHHOME/.sshrc.d/bash_aliases ]; then
     . $SSHHOME/.sshrc.d/bash_aliases
 fi
 
+if [ -f $SSHHOME/.sshrc.d/surc ]; then
+    . $SSHHOME/.sshrc.d/surc
+fi
+
 if [ -d $SSHHOME/.sshrc.d/bashrc.d ]; then
     for file in $SSHHOME/.sshrc.d/bashrc.d/*; do
         . $file
