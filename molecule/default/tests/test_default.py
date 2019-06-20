@@ -36,6 +36,7 @@ vars.update(playbook[0]['vars'])
     ('python3-dev'),
     ('python-setuptools'),
     ('undistract-me'),
+    ('docker-compose'),
 ])
 def test_apt_package_is_installed(host, name):
     package = host.package(name)
