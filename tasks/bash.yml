@@ -41,4 +41,11 @@
     insertafter: ^Defaults
     line: Defaults        insults
     validate: /usr/sbin/visudo -cf %s
+
+- name: Configure docker-compose autocompletion
+  become: true
+  get_url:
+    url: "https://raw.githubusercontent.com/docker/compose/1.24.0/contrib/\
+      completion/bash/docker-compose"
+    dest: /etc/bash_completion.d/docker-compose
 ...
