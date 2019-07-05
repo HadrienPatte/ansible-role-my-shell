@@ -32,6 +32,12 @@ my_shell_bash_aliases:
   - alias: g
     command: git
 
+  - alias: d
+    command: docker
+
+  - alias: dc
+    command: docker-compose
+
   - alias: ..
     command: cd ..
 
