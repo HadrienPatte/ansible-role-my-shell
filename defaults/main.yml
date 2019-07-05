@@ -41,6 +41,13 @@ my_shell_bash_aliases:
   - alias: ..
     command: cd ..
 
+  - alias: k
+    command: kubectl
+
+  - alias: kcd
+    command: "kubectl config set-context $(kubectl config current-context) \
+      --namespace "
+
 my_shell_additional_bash_aliases: []
 
 my_shell_ansible_forks: 5
