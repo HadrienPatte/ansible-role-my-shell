@@ -48,6 +48,9 @@ my_shell_bash_aliases:
     command: "kubectl config set-context $(kubectl config current-context) \
       --namespace "
 
+  - alias: gc
+    command: gcloud
+
 my_shell_additional_bash_aliases: []
 
 my_shell_ansible_forks: 5
