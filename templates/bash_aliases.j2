@@ -1,3 +1,9 @@
 {% for item in my_shell_bash_aliases + my_shell_additional_bash_aliases %}
 alias {{ item.alias }}='{{ item.command }}'
 {% endfor %}
+
+{% for item in my_shell_bash_aliases + my_shell_additional_bash_aliases %}
+{% if item.complete is defined and item.complete %}
+complete -F _complete_alias {{ item.alias }}
+{% endif %}
+{% endfor %}

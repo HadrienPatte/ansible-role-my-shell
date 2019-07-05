@@ -29,11 +29,6 @@
     - bashrc.d/bash_git_prompt
     - bashrc.d/kubectl
 
-- name: Configure bash aliases
-  template:
-    src: bash_aliases.j2
-    dest: "{{ ansible_env.HOME }}/.bash_aliases"
-
 - name: Configure sudo insults
   become: true
   lineinfile:
@@ -43,10 +38,21 @@
     line: Defaults        insults
     validate: /usr/sbin/visudo -cf %s
 
-- name: Configure docker-compose autocompletion
+- name: Configure bash autocompletion
   become: true
   get_url:
-    url: "https://raw.githubusercontent.com/docker/compose/1.24.0/contrib/\
-      completion/bash/docker-compose"
-    dest: /etc/bash_completion.d/docker-compose
+    url: "{{ item.url }}"
+    dest: /etc/bash_completion.d/{{ item.name }}
+  loop:
+    - name: docker-compose
+      url: "https://raw.githubusercontent.com/docker/compose/1.24.0/contrib/\
+        completion/bash/docker-compose"
+    - name: complete-alias
+      url: "https://raw.githubusercontent.com/cykerway/complete-alias/\
+        master/bash_completion.sh"
+
+- name: Configure bash aliases
+  template:
+    src: bash_aliases.j2
+    dest: "{{ ansible_env.HOME }}/.bash_aliases"
 ...
