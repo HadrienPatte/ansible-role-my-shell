@@ -29,8 +29,32 @@ my_shell_bash_aliases:
       git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s
       %Cgreen(%cr) %C(bold blue) %an %Creset" --abbrev-commit
 
+  - alias: g
+    command: git
+    complete: true
+
+  - alias: d
+    command: docker
+    complete: true
+
+  - alias: dc
+    command: docker-compose
+    complete: true
+
   - alias: ..
     command: cd ..
+
+  - alias: k
+    command: kubectl
+    complete: true
+
+  - alias: kcd
+    command: "kubectl config set-context $(kubectl config current-context) \
+      --namespace "
+
+  - alias: gc
+    command: gcloud
+    complete: true
 
 my_shell_additional_bash_aliases: []
 
