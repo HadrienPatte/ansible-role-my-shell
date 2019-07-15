@@ -1,18 +1,26 @@
 ---
-- name: Add Google Cloud public key
+- name: Add public keys
   become: true
   apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    url: "{{ item }}"
     state: present
+  loop:
+    - https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    - https://packages.microsoft.com/keys/microsoft.asc
   register: apt_key_result
   retries: 3
   until: apt_key_result is succeeded
 
-- name: Add Google Cloud repository
+- name: Add repositories
   become: true
   apt_repository:
-    repo: deb https://packages.cloud.google.com/apt cloud-sdk main
+    repo: deb {{ item }}
     state: present
+  loop:
+    - https://packages.cloud.google.com/apt cloud-sdk main
+    - >
+      [arch=amd64] https://packages.microsoft.com/repos/azure-cli/
+      {{ ansible_distribution_release }} main
 
 - name: Install apt packages
   become: true
@@ -39,6 +47,7 @@
       - docker-compose
       - bash-completion
       - google-cloud-sdk
+      - azure-cli
     state: present
   register: apt_result
   until: apt_result is succeeded
