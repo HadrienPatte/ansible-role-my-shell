@@ -45,6 +45,7 @@
     name:
       - pipenv
       - virtualenvwrapper
+      - awscli
     state: present
     executable: "{{ ansible_env.HOME }}/.local/bin/pip3"
     extra_args: --user
