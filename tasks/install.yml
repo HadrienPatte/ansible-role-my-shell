@@ -5,6 +5,7 @@
     url: "{{ item }}"
     state: present
   loop:
+    - https://download.docker.com/linux/debian/gpg
     - https://packages.cloud.google.com/apt/doc/apt-key.gpg
     - https://packages.microsoft.com/keys/microsoft.asc
   register: apt_key_result
@@ -17,6 +18,9 @@
     repo: deb {{ item }}
     state: present
   loop:
+    - >
+      [arch=amd64] https://download.docker.com/linux/debian
+      {{ ansible_distribution_release }} stable
     - https://packages.cloud.google.com/apt cloud-sdk main
     - >
       [arch=amd64] https://packages.microsoft.com/repos/azure-cli/
@@ -44,6 +48,7 @@
       - python3-dev
       - python-setuptools  # Required to use ansible pip module
       - undistract-me
+      - docker-ce
       - docker-compose
       - bash-completion
       - google-cloud-sdk
@@ -81,4 +86,12 @@
       pipenvwrapper.sh"
     dest: "{{ ansible_env.HOME }}/.local/bin/pipenvwrapper.sh"
     mode: 0755
+
+- name: Start and enable docker service
+  become: true
+  systemd:
+    name: docker
+    state: started
+    enabled: true
+
 ...
