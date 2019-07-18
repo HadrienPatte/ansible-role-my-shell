@@ -31,7 +31,6 @@
     - bash_aliases
     - inputrc
     - bashrc.d/autojump
-    - bashrc.d/pipenv
     - bashrc.d/virtualenvwrapper
     - bashrc.d/pipenvwrapper
 ...
