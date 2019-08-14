@@ -1,3 +1,3 @@
-if [[ -x $(which {{ item.command }}) ]]; then
+if [ -x "$(which {{ item.command }})" ]; then
     {{ item.complete_command }}
 fi

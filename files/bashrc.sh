@@ -38,7 +38,7 @@ HISTIGNORE='cd:ls:ll:la:l:pwd:e:ssu:h:a:s:gl:..'
 unset HISTORY_COLOR_LWHITE HISTORY_COLOR_NORMAL
 
 # Set the default editor
-if [ -x $(which vim) ]; then
+if [ -x "$(which vim)" ]; then
     VISUAL=vim
     EDITOR=$VISUAL
 fi
@@ -87,7 +87,7 @@ if [ "$color_prompt" = yes ]; then
     if [[ "$USER" == "root" ]]; then
         PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LRED}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`#${NORMAL} "
     else
-        if [ -z $SSHHOME ]; then
+        if [ -z "$SSHHOME" ]; then
             PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LMAGENTA}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`\$${NORMAL} "
         else
             PS1="${debian_chroot:+($debian_chroot)}${LBLUE}<${CYAN}\t${LBLUE}>[${LGREEN}\u@\h${LBLUE}:${YELLOW}\w${LBLUE}]\`if [[ \$? = \"0\" ]]; then echo \"${LWHITE}\"; else echo \"${RED}\"; fi\`\$${NORMAL} "
@@ -153,7 +153,7 @@ if ! shopt -oq posix; then
 fi
 
 # If the command-not-found package is installed, use it
-if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found ]; then
+if [ -x /usr/lib/command-not-found ] || [ -x /usr/share/command-not-found ]; then
     function command_not_found_handle {
         # Check because c-n-f could've been removed in the meantime
         if [ -x /usr/lib/command-not-found ]; then
@@ -168,8 +168,8 @@ if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found ]; then
     }
 fi
 
-if [ -d $HOME/.bashrc.d ]; then
-    for file in $HOME/.bashrc.d/*; do
-        . $file
+if [ -d ~/.bashrc.d ]; then
+    for file in ~/.bashrc.d/*; do
+        . "$file"
     done
 fi

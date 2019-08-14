@@ -1,9 +1,7 @@
-GITPROMPT=~/.bash-git-prompt/gitprompt.sh
-if [ -f $GITPROMPT ]; then
+if [ -f "$HOME"/.bash-git-prompt/gitprompt.sh ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
-    if [ -f ~/.git-prompt-colors.sh ]; then
+    if [ -f "$HOME"/.git-prompt-colors.sh ]; then
         GIT_PROMPT_THEME=Custom
     fi
-    . $GITPROMPT
+    . "$HOME"/.bash-git-prompt/gitprompt.sh
 fi
-unset GITPROMPT
