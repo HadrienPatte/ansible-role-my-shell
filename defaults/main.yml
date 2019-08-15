@@ -105,4 +105,32 @@ my_shell_git_config:
   - section: commit
     option: gpgsign
     value: "{{ my_shell_git_key_fingerprint is defined | lower }}"
+
+  - section: alias
+    option: a
+    value: add
+
+  - section: alias
+    option: c
+    value: commit --signoff
+
+  - section: alias
+    option: s
+    value: status
+
+  - section: alias
+    option: p
+    value: push
+
+  - section: alias
+    option: pl
+    value: pull
+
+  - section: alias
+    option: ck
+    value: checkout
+
+  - section: alias
+    option: f
+    value: fetch
 ...
