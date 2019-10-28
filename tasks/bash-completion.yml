@@ -7,10 +7,15 @@
   loop:
     - name: docker-compose
       file: docker/compose/1.24.0/contrib/completion/bash/docker-compose
+      
     - name: complete-alias
       file: cykerway/complete-alias/master/bash_completion.sh
+
     - name: helm
       file: helm/helm/master/scripts/completions.bash
+
+    - name: oc
+      file: openshift/origin/master/contrib/completions/bash/oc
 
 - name: Configure command completion
   become: true
