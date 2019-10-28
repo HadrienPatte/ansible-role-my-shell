@@ -20,6 +20,12 @@
     - name: azure-cli
       file: Azure/azure-cli/master/az.completion
 
+    - name: kubectx
+      file: ahmetb/kubectx/master/completion/kubectx.bash
+
+    - name: kubens
+      file: ahmetb/kubectx/master/completion/kubens.bash
+
 - name: Configure command completion
   become: true
   template:
