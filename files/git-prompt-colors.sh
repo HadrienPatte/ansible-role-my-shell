@@ -5,15 +5,13 @@
 override_git_prompt_colors() {
   GIT_PROMPT_THEME_NAME="Custom"
 
-  Time12a="\$(date +%H:%M:%S)"
+  # Time12a="\$(date +%H:%M)"
   # PathShort="\w";
-  GIT_PROMPT_USER="\u"
-  GIT_PROMPT_HOST="\h"
 
   ## These are the color definitions used by gitprompt.sh
-  GIT_PROMPT_PREFIX="("                 # start of the git info string
-  GIT_PROMPT_SUFFIX=")"                 # the end of the git info string
-  # GIT_PROMPT_SEPARATOR="|"              # separates each item
+  GIT_PROMPT_PREFIX=""                 # start of the git info string
+  GIT_PROMPT_SUFFIX=""                 # the end of the git info string
+  GIT_PROMPT_SEPARATOR=""              # separates each item
 
   # GIT_PROMPT_BRANCH="${Magenta}"        # the git branch that is active in the current directory
   # GIT_PROMPT_MASTER_BRANCH="${GIT_PROMPT_BRANCH}" # used if the git branch that is active in the current directory is $GIT_PROMPT_MASTER_BRANCHES
@@ -24,7 +22,7 @@ override_git_prompt_colors() {
   # GIT_PROMPT_REMOTE=" "                 # the remote branch name (if any) and the symbols for ahead and behind
   GIT_PROMPT_UNTRACKED="${Cyan} ✏️  "       # the number of untracked files/dirs
   GIT_PROMPT_STASHED="${BoldBlue} 🌀 "    # the number of stashed files/dir
-  GIT_PROMPT_CLEAN="${BoldGreen}✔️ "      # a colored flag indicating a "clean" repo
+  GIT_PROMPT_CLEAN="${BoldGreen} ✔️ "      # a colored flag indicating a "clean" repo
 
   ## For the command indicator, the placeholder _LAST_COMMAND_STATE_
   ## will be replaced with the exit code of the last command
@@ -32,8 +30,8 @@ override_git_prompt_colors() {
   ## GIT_PROMPT_COMMAND_OK="${Green}✔-_LAST_COMMAND_STATE_ "    # indicator if the last command returned with an exit code of 0
   ## GIT_PROMPT_COMMAND_FAIL="${Red}✘-_LAST_COMMAND_STATE_ "    # indicator if the last command returned with an exit code of other than 0
 
-  GIT_PROMPT_COMMAND_OK=""    # indicator if the last command returned with an exit code of 0
-  GIT_PROMPT_COMMAND_FAIL=" ${BoldRed}❌ _LAST_COMMAND_STATE_"    # indicator if the last command returned with an exit code of other than 0
+  # GIT_PROMPT_COMMAND_OK="${Green}✔"    # indicator if the last command returned with an exit code of 0
+  # GIT_PROMPT_COMMAND_FAIL="${Red}✘-_LAST_COMMAND_STATE_"    # indicator if the last command returned with an exit code of other than 0
 
   ## template for displaying the current virtual environment
   ## use the placeholder _VIRTUALENV_ will be replaced with
@@ -46,10 +44,10 @@ override_git_prompt_colors() {
   # GIT_PROMPT_UPSTREAM=" {${Blue}_UPSTREAM_${ResetColor}}"
 
   ## _LAST_COMMAND_INDICATOR_ will be replaced by the appropriate GIT_PROMPT_COMMAND_OK OR GIT_PROMPT_COMMAND_FAIL
-  GIT_PROMPT_START_USER="${BoldBlue}<${Cyan}${Time12a}${BoldBlue}>[${BrightMagenta}${GIT_PROMPT_USER}@${GIT_PROMPT_HOST}${BoldBlue}:${Yellow}${PathShort}${BoldBlue}]${ResetColor}"
-  GIT_PROMPT_START_ROOT="${BoldBlue}<${Cyan}${Time12a}${BoldBlue}>[${BrightRed}${GIT_PROMPT_USER}@${GIT_PROMPT_HOST}${BoldBlue}:${Yellow}${PathShort}${BoldBlue}]${ResetColor}"
-  GIT_PROMPT_END_USER=" \n${BoldWhite}└─_LAST_COMMAND_INDICATOR_ ${BoldWhite}$ ${ResetColor}"
-  GIT_PROMPT_END_ROOT=" \n${BoldWhite}└─_LAST_COMMAND_INDICATOR_ ${BoldWhite}# ${ResetColor}"
+  GIT_PROMPT_START_USER=${PS1::-67}
+  GIT_PROMPT_START_ROOT=${PS1::-67}
+  GIT_PROMPT_END_USER="\n${ResetColor}└─ ${BoldWhite}\`if [[ \$? != \"0\" ]]; then echo \"${RED}\"; fi\`\$${ResetColor} "
+  GIT_PROMPT_END_ROOT="\n${ResetColor}└─ ${BoldWhite}\`if [[ \$? != \"0\" ]]; then echo \"${RED}\"; fi\`#${ResetColor} "
 
   ## Please do not add colors to these symbols
   # GIT_PROMPT_SYMBOLS_AHEAD="↑·"             # The symbol for "n versions ahead of origin"
