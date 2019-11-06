@@ -1,22 +1,22 @@
 ---
-# - name: Install packages
-#   include_tasks: install.yml
-#
-# - name: Configure git
-#   include_tasks: git.yml
-#
-# - name: Configure bash
-#   include_tasks: bash.yml
-#
-# - name: Install and configure sshrc
-#   include_tasks: sshrc.yml
-#
-# - name: Build hosts file
-#   include_tasks: hosts.yml
-#   tags: molecule-notest
-#
-# - name: Configure ssh
-#   include_tasks: ssh.yml
+- name: Install packages
+  include_tasks: install.yml
+
+- name: Configure git
+  include_tasks: git.yml
+
+- name: Configure bash
+  include_tasks: bash.yml
+
+- name: Install and configure sshrc
+  include_tasks: sshrc.yml
+
+- name: Build hosts file
+  include_tasks: hosts.yml
+  tags: molecule-notest
+
+- name: Configure ssh
+  include_tasks: ssh.yml
 
 - name: Install and configure kube tools
   include_tasks: kube.yml

@@ -26,6 +26,7 @@ vars.update(playbook[0]['vars'])
     ('nmap'),
     ('sshuttle'),
     ('p7zip-full'),
+    ('gnupg'),
     ('gnupg2'),
     ('unrar'),
     ('sl'),
