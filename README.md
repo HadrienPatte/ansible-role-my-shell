@@ -61,6 +61,10 @@ all:
 * `my_shell_ssh_key`: location of your main SSH key (optional, defaults to
 `~/.ssh/id_rsa`)
 
+### Applications version Variables
+
+* `my_shell_stern_version`: stern version
+
 # Dependencies
 
 None.

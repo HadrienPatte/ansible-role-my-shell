@@ -58,6 +58,8 @@ my_shell_bash_aliases:
 
 my_shell_additional_bash_aliases: []
 
+my_shell_stern_version: 1.11.0
+
 my_shell_ansible_forks: 5
 my_shell_ansible_callback_whitelist: timer, mail
 my_shell_ansible_cows: true
