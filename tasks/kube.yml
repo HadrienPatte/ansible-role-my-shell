@@ -83,4 +83,25 @@
     extra_opts:
       - --transform
       - s/linux-amd64\///
+
+- name: Install oc
+  become: true
+  unarchive:
+    src: "https://github.com/openshift/origin/releases/download\
+      /v{{ my_shell_oc_version }}/openshift-origin-client-tools-\
+      v{{ my_shell_oc_version }}-{{ my_shell_oc_version_hash }}-\
+      linux-64bit.tar.gz"
+    dest: /usr/local/bin/
+    remote_src: true
+    mode: 0755
+    owner: root
+    group: root
+    exclude:
+      - LICENSE
+      - README.md
+      - kubectl
+    extra_opts:
+      - --transform
+      - "s/openshift-origin-client-tools-v{{ my_shell_oc_version }}-\
+        {{ my_shell_oc_version_hash }}-linux-64bit\\///"
 ...

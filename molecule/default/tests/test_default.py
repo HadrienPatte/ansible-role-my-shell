@@ -64,6 +64,7 @@ def test_package_is_installed(host, name):
     ('stern'),
     ('k9s'),
     ('helm'),
+    ('oc'),
 ])
 def test_package_is_installed_globally(host, name):
     package = host.file('/usr/local/bin/' + name)
