@@ -65,4 +65,22 @@
     exclude:
       - LICENSE
       - README.md
+
+- name: Install helm
+  become: true
+  unarchive:
+    src: "https://get.helm.sh/helm-v{{ my_shell_helm_version }}\
+      -linux-amd64.tar.gz"
+    dest: /usr/local/bin/
+    remote_src: true
+    mode: 0755
+    owner: root
+    group: root
+    exclude:
+      - LICENSE
+      - README.md
+      - tiller
+    extra_opts:
+      - --transform
+      - s/linux-amd64\///
 ...
