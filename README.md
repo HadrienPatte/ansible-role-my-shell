@@ -64,6 +64,7 @@ all:
 ### Applications version Variables
 
 * `my_shell_stern_version`: stern version
+* `my_shell_k9s_version`: k9s version
 
 # Dependencies
 
