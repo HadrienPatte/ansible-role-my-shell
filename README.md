@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/HadrienPatte/ansible-role-my-shell.svg?branch=master)](https://travis-ci.com/HadrienPatte/ansible-role-my-shell)
 
-An Ansible Role that installs shell utilities and deploy various dotfiles on
+An Ansible Role that installs shell utilities and deploys various dotfiles on
 Ubuntu 18.04.
 
 ## Requirements

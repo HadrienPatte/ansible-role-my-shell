@@ -18,6 +18,9 @@
 - name: Configure ssh
   include_tasks: ssh.yml
 
+- name: Install and configure kube tools
+  include_tasks: kube.yml
+
 - name: Install and configure ansible
   include_tasks: ansible.yml
 ...

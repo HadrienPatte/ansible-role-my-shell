@@ -38,6 +38,7 @@ vars.update(playbook[0]['vars'])
     ('undistract-me'),
     ('docker-compose'),
     ('bash-completion'),
+    ('kubectl'),
 ])
 def test_apt_package_is_installed(host, name):
     package = host.package(name)

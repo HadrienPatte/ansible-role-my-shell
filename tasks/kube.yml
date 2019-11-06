@@ -1,0 +1,30 @@
+---
+- name: Add Google Cloud public key
+  become: true
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    keyring: /usr/share/keyrings/cloud.google.gpg
+    state: present
+  register: apt_key_result
+  retries: 3
+  until: apt_key_result is succeeded
+
+- name: Add Google Cloud repository
+  become: true
+  apt_repository:
+    repo: >
+      deb [signed-by=/usr/share/keyrings/cloud.google.gpg]
+      https://packages.cloud.google.com/apt
+      cloud-sdk-{{ ansible_distribution_release }} main
+    state: present
+
+- name: Install kubectl
+  become: true
+  apt:
+    update_cache: true
+    name: kubectl
+    state: present
+  register: apt_result
+  retries: 3
+  until: apt_result is succeeded
+...
