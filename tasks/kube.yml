@@ -27,4 +27,9 @@
   register: apt_result
   retries: 3
   until: apt_result is succeeded
+
+- name: Install kube-ps1
+  get_url:
+    url: https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+    dest: "{{ ansible_env.HOME }}/.bashrc.d/kube-ps1"
 ...
