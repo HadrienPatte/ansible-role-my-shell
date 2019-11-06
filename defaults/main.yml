@@ -48,12 +48,12 @@ my_shell_bash_aliases:
     command: kubectl
     complete: true
 
-  - alias: kcd
-    command: "kubectl config set-context $(kubectl config current-context) \
-      --namespace "
+  - alias: kx
+    command: kubectx
+    complete: true
 
-  - alias: gc
-    command: gcloud
+  - alias: kn
+    command: kubens
     complete: true
 
 my_shell_additional_bash_aliases: []

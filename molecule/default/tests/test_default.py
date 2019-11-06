@@ -57,6 +57,15 @@ def test_package_is_installed(host, name):
     assert package.exists
     assert package.is_file
 
+@pytest.mark.parametrize('name', [
+    ('kubectx'),
+    ('kubens'),
+])
+def test_package_is_installed_globally(host, name):
+    package = host.file('/usr/local/bin/' + name)
+    assert package.exists
+    assert package.is_file
+
 
 @pytest.mark.parametrize('name, env', [
     ('ansible', 'a'),

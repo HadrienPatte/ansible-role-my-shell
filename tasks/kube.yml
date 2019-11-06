@@ -32,4 +32,14 @@
   get_url:
     url: https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
     dest: "{{ ansible_env.HOME }}/.bashrc.d/kube-ps1"
+
+- name: Install kubectx and kubens
+  become: true
+  get_url:
+    url: https://raw.githubusercontent.com/ahmetb/kubectx/master/{{ item }}
+    dest: /usr/local/bin/{{ item }}
+    mode: 0755
+  loop:
+    - kubectx
+    - kubens
 ...
