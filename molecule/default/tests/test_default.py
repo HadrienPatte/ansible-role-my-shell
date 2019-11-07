@@ -26,6 +26,7 @@ vars.update(playbook[0]['vars'])
     ('nmap'),
     ('sshuttle'),
     ('p7zip-full'),
+    ('gnupg'),
     ('gnupg2'),
     ('unrar'),
     ('sl'),
@@ -38,6 +39,7 @@ vars.update(playbook[0]['vars'])
     ('undistract-me'),
     ('docker-compose'),
     ('bash-completion'),
+    ('kubectl'),
 ])
 def test_apt_package_is_installed(host, name):
     package = host.package(name)
@@ -53,6 +55,20 @@ def test_apt_package_is_installed(host, name):
 ])
 def test_package_is_installed(host, name):
     package = host.file(vars['ansible_env']['HOME'] + '/.local/bin/' + name)
+    assert package.exists
+    assert package.is_file
+
+
+@pytest.mark.parametrize('name', [
+    ('kubectx'),
+    ('kubens'),
+    ('stern'),
+    ('k9s'),
+    ('helm'),
+    ('oc'),
+])
+def test_package_is_installed_globally(host, name):
+    package = host.file('/usr/local/bin/' + name)
     assert package.exists
     assert package.is_file
 

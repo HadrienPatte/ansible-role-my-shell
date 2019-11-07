@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/HadrienPatte/ansible-role-my-shell.svg?branch=master)](https://travis-ci.com/HadrienPatte/ansible-role-my-shell)
 
-An Ansible Role that installs shell utilities and deploy various dotfiles on
+An Ansible Role that installs shell utilities and deploys various dotfiles on
 Ubuntu 18.04.
 
 ## Requirements
@@ -60,6 +60,15 @@ all:
 * `my_shell_ssh_user`: your username when login on remote servers by SSH
 * `my_shell_ssh_key`: location of your main SSH key (optional, defaults to
 `~/.ssh/id_rsa`)
+
+### Applications version Variables
+
+* `my_shell_stern_version`: stern version
+* `my_shell_k9s_version`: k9s version
+* `my_shell_helm_version`: helm version
+* `my_shell_oc_version`: oc version
+* `my_shell_oc_version_hash`: oc version hash
+
 
 # Dependencies
 

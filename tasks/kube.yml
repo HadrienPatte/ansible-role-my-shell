@@ -1,0 +1,107 @@
+---
+- name: Add Google Cloud public key
+  become: true
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    keyring: /usr/share/keyrings/cloud.google.gpg
+    state: present
+  register: apt_key_result
+  retries: 3
+  until: apt_key_result is succeeded
+
+- name: Add Google Cloud repository
+  become: true
+  apt_repository:
+    repo: >
+      deb [signed-by=/usr/share/keyrings/cloud.google.gpg]
+      https://packages.cloud.google.com/apt
+      cloud-sdk-{{ ansible_distribution_release }} main
+    state: present
+
+- name: Install kubectl
+  become: true
+  apt:
+    update_cache: true
+    name: kubectl
+    state: present
+  register: apt_result
+  retries: 3
+  until: apt_result is succeeded
+
+- name: Install kube-ps1
+  get_url:
+    url: https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+    dest: "{{ ansible_env.HOME }}/.bashrc.d/kube-ps1"
+
+- name: Install kubectx and kubens
+  become: true
+  get_url:
+    url: https://raw.githubusercontent.com/ahmetb/kubectx/master/{{ item }}
+    dest: /usr/local/bin/{{ item }}
+    mode: 0755
+  loop:
+    - kubectx
+    - kubens
+
+- name: Install stern
+  become: true
+  get_url:
+    url: "https://github.com/wercker/stern/releases/download/\
+      {{ my_shell_stern_version }}/stern_linux_amd64"
+    dest: /usr/local/bin/stern
+    mode: 0755
+
+- name: Install k9s
+  become: true
+  unarchive:
+    src: "https://github.com/derailed/k9s/releases/download/\
+      {{ my_shell_k9s_version }}/\
+      k9s_{{ my_shell_k9s_version }}_Linux_x86_64.tar.gz"
+    dest: /usr/local/bin/
+    remote_src: true
+    mode: 0755
+    owner: root
+    group: root
+    exclude:
+      - LICENSE
+      - README.md
+
+- name: Install helm
+  become: true
+  unarchive:
+    src: "https://get.helm.sh/helm-v{{ my_shell_helm_version }}\
+      -linux-amd64.tar.gz"
+    dest: /usr/local/bin/
+    remote_src: true
+    mode: 0755
+    owner: root
+    group: root
+    exclude:
+      - LICENSE
+      - README.md
+      - tiller
+    extra_opts:
+      - --transform
+      - s/linux-amd64\///
+
+- name: Install oc
+  become: true
+  unarchive:
+    src: "https://github.com/openshift/origin/releases/download\
+      /v{{ my_shell_oc_version }}/openshift-origin-client-tools-\
+      v{{ my_shell_oc_version }}-{{ my_shell_oc_version_hash }}-\
+      linux-64bit.tar.gz"
+    dest: /usr/local/bin/
+    remote_src: true
+    mode: 0755
+    owner: root
+    group: root
+    exclude:
+      - LICENSE
+      - README.md
+      - kubectl
+    extra_opts:
+      - --transform
+      - "s/openshift-origin-client-tools-v{{ my_shell_oc_version }}-\
+        {{ my_shell_oc_version_hash }}-linux-64bit\\///"
+...
