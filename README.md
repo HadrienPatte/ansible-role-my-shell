@@ -27,6 +27,8 @@ configure git.
   values in `defaults/main.yml`)
 * `my_shell_additional_bash_aliases`: list of additional bash aliases in case
   you do not want to overload `my_shell_bash_aliases`
+* `my_shell_command_complete`: list of completion scripts for commands (check
+  the syntax and default values in `defaults/main.yml`)
 
 ### Ansible Variables
 

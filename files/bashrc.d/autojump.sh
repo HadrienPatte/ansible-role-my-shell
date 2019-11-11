@@ -1,5 +1,3 @@
-AUTOJUMP=/usr/share/autojump/autojump.bash
-if [ -f $AUTOJUMP ]; then
-    . $AUTOJUMP
+if [ -f /usr/share/autojump/autojump.bash ]; then
+    . /usr/share/autojump/autojump.bash
 fi
-unset AUTOJUMP

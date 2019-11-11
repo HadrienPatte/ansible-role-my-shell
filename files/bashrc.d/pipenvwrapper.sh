@@ -1,8 +1,6 @@
-PIPENVWRAPPER=$HOME/.local/bin/pipenvwrapper.sh
-if [ -f $PIPENVWRAPPER ]; then
-    WORKON_HOME=$HOME/.virtualenvs
-    PROJECT_HOME=$HOME/Documents/Projets
+if [ -f "$HOME"/.local/bin/pipenvwrapper.sh ]; then
+    WORKON_HOME="$HOME"/.virtualenvs
+    PROJECT_HOME="$HOME"/Documents/Projets
     # PIPENVWRAPPER_USE_VIRTUALENVWRAPPER_FUNCTION_NAMES=1
-    . $PIPENVWRAPPER
+    . "$HOME"/.local/bin/pipenvwrapper.sh
 fi
-unset PIPENVWRAPPER

@@ -8,6 +8,9 @@
 - name: Configure bash
   include_tasks: bash.yml
 
+- name: Configure bash completion
+  include_tasks: bash-completion.yml
+
 - name: Install and configure sshrc
   include_tasks: sshrc.yml
 

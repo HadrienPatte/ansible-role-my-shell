@@ -1,0 +1,35 @@
+---
+- name: Configure bash autocompletion
+  become: true
+  get_url:
+    url: https://raw.githubusercontent.com/{{ item.file }}
+    dest: /etc/bash_completion.d/{{ item.name }}
+  loop:
+    - name: docker-compose
+      file: docker/compose/1.24.0/contrib/completion/bash/docker-compose
+
+    - name: complete-alias
+      file: cykerway/complete-alias/master/bash_completion.sh
+
+    - name: helm
+      file: helm/helm/master/scripts/completions.bash
+
+    - name: oc_completion
+      file: openshift/origin/master/contrib/completions/bash/oc
+
+    - name: azure-cli
+      file: Azure/azure-cli/master/az.completion
+
+    - name: kubectx
+      file: ahmetb/kubectx/master/completion/kubectx.bash
+
+    - name: kubens
+      file: ahmetb/kubectx/master/completion/kubens.bash
+
+- name: Configure command completion
+  become: true
+  template:
+    src: bash_completion.j2
+    dest: /etc/bash_completion.d/{{ item.command }}
+  loop: "{{ my_shell_command_complete }}"
+...

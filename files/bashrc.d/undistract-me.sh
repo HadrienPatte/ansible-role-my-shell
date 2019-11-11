@@ -1,5 +1,3 @@
-UNDISTRACT=/etc/profile.d/undistract-me.sh
-if [ -f $UNDISTRACT ]; then
-    . $UNDISTRACT
+if [ -f /etc/profile.d/undistract-me.sh ]; then
+    . /etc/profile.d/undistract-me.sh
 fi
-unset UNDISTRACT
