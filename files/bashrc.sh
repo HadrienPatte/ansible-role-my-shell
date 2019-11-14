@@ -21,21 +21,18 @@ HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 
 # For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000000000
-HISTFILESIZE=1000000000
+HISTSIZE=-1
+HISTFILESIZE=-1
 
 # Use an unlimited history file
 # HISTFILE=~/.bash_eternal_history
 
 # Force prompt to write history after every command.
-PROMPT_COMMAND="history -a; history -n; "
+PROMPT_COMMAND="history -a; history -c; history -r"
 
 # History appearance
-HISTORY_COLOR_LWHITE="\033[1;37m"
-HISTORY_COLOR_NORMAL="\033[00m"
-HISTTIMEFORMAT=`echo -e $HISTORY_COLOR_LWHITE[%F %T] $HISTORY_COLOR_NORMAL `
+HISTTIMEFORMAT=`echo -e '\033[1;37m'[%F %T] '\033[00m' `
 HISTIGNORE='cd:ls:ll:la:l:pwd:e:ssu:h:a:s:gl:..'
-unset HISTORY_COLOR_LWHITE HISTORY_COLOR_NORMAL
 
 # Set the default editor
 if [ -x "$(which vim)" ]; then
