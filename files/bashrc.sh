@@ -82,12 +82,12 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     if [[ "$USER" == "root" ]]; then
-        PS1="${debian_chroot:+($debian_chroot)}${CYAN}\A ${LRED}\u@\h ${YELLOW}\w\`if [[ \$? != \"0\" ]]; then echo \"${RED}\"; fi\` #${NORMAL} "
+        PS1="${debian_chroot:+($debian_chroot)}${CYAN}\A ${LRED}\u@\h ${YELLOW}\w${LWHITE}\`if [[ \$? != \"0\" ]]; then echo \"${RED}\"; fi\` #${NORMAL} "
     else
         if [ -z $SSHHOME ]; then
             PS1="${debian_chroot:+($debian_chroot)}${CYAN}\A ${LBLUE}\u ${YELLOW}\w${LWHITE}\`if [[ \$? != \"0\" ]]; then echo \"${RED}\"; fi\` \$${NORMAL} "
         else
-            PS1="${debian_chroot:+($debian_chroot)}${CYAN}\A ${LGREEN}\u@\h ${YELLOW}\w\`if [[ \$? != \"0\" ]]; then echo \"${RED}\"; fi\` \$${NORMAL} "
+            PS1="${debian_chroot:+($debian_chroot)}${CYAN}\A ${LGREEN}\u@\h ${YELLOW}\w${LWHITE}\`if [[ \$? != \"0\" ]]; then echo \"${RED}\"; fi\` \$${NORMAL} "
         fi
     fi
 else
