@@ -43,20 +43,29 @@
     - kubectx
     - kubens
 
+- name: Find latest stern version
+  uri:
+    url: https://api.github.com/repos/wercker/stern/releases
+    return_content: true
+  register: stern_response
+
 - name: Install stern
   become: true
   get_url:
-    url: "https://github.com/wercker/stern/releases/download/\
-      {{ my_shell_stern_version }}/stern_linux_amd64"
+    url: "{{ stern_response.json[0].assets[1].browser_download_url }}"
     dest: /usr/local/bin/stern
     mode: 0755
+
+- name: Find latest k9s version
+  uri:
+    url: https://api.github.com/repos/derailed/k9s/releases
+    return_content: true
+  register: k9s_response
 
 - name: Install k9s
   become: true
   unarchive:
-    src: "https://github.com/derailed/k9s/releases/download/\
-      {{ my_shell_k9s_version }}/\
-      k9s_{{ my_shell_k9s_version }}_Linux_x86_64.tar.gz"
+    src: "{{ k9s_response.json[0].assets[7].browser_download_url }}"
     dest: /usr/local/bin/
     remote_src: true
     mode: 0755
@@ -66,10 +75,16 @@
       - LICENSE
       - README.md
 
+- name: Find latest helm version
+  uri:
+    url: https://api.github.com/repos/helm/helm/releases
+    return_content: true
+  register: helm_response
+
 - name: Install helm
   become: true
   unarchive:
-    src: "https://get.helm.sh/helm-v{{ my_shell_helm_version }}\
+    src: "https://get.helm.sh/helm-{{ helm_response.json[0].tag_name }}\
       -linux-amd64.tar.gz"
     dest: /usr/local/bin/
     remote_src: true
@@ -84,13 +99,16 @@
       - --transform
       - s/linux-amd64\///
 
+- name: Find latest oc version
+  uri:
+    url: https://api.github.com/repos/openshift/origin/releases
+    return_content: true
+  register: oc_response
+
 - name: Install oc
   become: true
   unarchive:
-    src: "https://github.com/openshift/origin/releases/download\
-      /v{{ my_shell_oc_version }}/openshift-origin-client-tools-\
-      v{{ my_shell_oc_version }}-{{ my_shell_oc_version_hash }}-\
-      linux-64bit.tar.gz"
+    src: "{{ oc_response.json[0].assets[1].browser_download_url }}"
     dest: /usr/local/bin/
     remote_src: true
     mode: 0755
@@ -102,6 +120,5 @@
       - kubectl
     extra_opts:
       - --transform
-      - "s/openshift-origin-client-tools-v{{ my_shell_oc_version }}-\
-        {{ my_shell_oc_version_hash }}-linux-64bit\\///"
+      - "s/{{ oc_response.json[0].assets[1].name[:-7] }}\\///"
 ...
