@@ -63,11 +63,6 @@ all:
 * `my_shell_ssh_key`: location of your main SSH key (optional, defaults to
 `~/.ssh/id_rsa`)
 
-### Applications version Variables
-
-* `my_shell_oc_version`: oc version
-* `my_shell_oc_version_hash`: oc version hash
-
 
 # Dependencies
 

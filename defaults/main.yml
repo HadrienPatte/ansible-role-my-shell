@@ -91,9 +91,6 @@ my_shell_command_complete:
   - command: aws
     complete_command: complete -C $(which aws_completer) aws
 
-my_shell_oc_version: 3.11.0
-my_shell_oc_version_hash: 0cbc58b
-
 my_shell_ansible_forks: 5
 my_shell_ansible_callback_whitelist: timer, mail
 my_shell_ansible_cows: true
