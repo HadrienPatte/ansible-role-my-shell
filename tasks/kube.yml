@@ -43,11 +43,16 @@
     - kubectx
     - kubens
 
+- name: Find latest stern version
+  uri:
+    url: https://api.github.com/repos/wercker/stern/releases
+    return_content: true
+  register: stern_response
+
 - name: Install stern
   become: true
   get_url:
-    url: "https://github.com/wercker/stern/releases/download/\
-      {{ my_shell_stern_version }}/stern_linux_amd64"
+    url: "{{ stern_response.json[0].assets[1].browser_download_url }}"
     dest: /usr/local/bin/stern
     mode: 0755
 
