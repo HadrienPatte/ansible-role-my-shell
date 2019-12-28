@@ -10,10 +10,10 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 with open('../../defaults/main.yml') as vars_yml:
-    vars = yaml.load(vars_yml)
+    vars = yaml.safe_load(vars_yml)
 
 with open('playbook.yml') as playbook_yml:
-    playbook = yaml.load(playbook_yml)
+    playbook = yaml.safe_load(playbook_yml)
 
 vars.update(playbook[0]['vars'])
 
