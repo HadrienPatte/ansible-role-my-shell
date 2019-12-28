@@ -56,12 +56,16 @@
     dest: /usr/local/bin/stern
     mode: 0755
 
+- name: Find latest k9s version
+  uri:
+    url: https://api.github.com/repos/derailed/k9s/releases
+    return_content: true
+  register: k9s_response
+
 - name: Install k9s
   become: true
   unarchive:
-    src: "https://github.com/derailed/k9s/releases/download/\
-      {{ my_shell_k9s_version }}/\
-      k9s_{{ my_shell_k9s_version }}_Linux_x86_64.tar.gz"
+    src: "{{ k9s_response.json[0].assets[3].browser_download_url }}"
     dest: /usr/local/bin/
     remote_src: true
     mode: 0755

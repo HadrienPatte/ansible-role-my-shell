@@ -65,7 +65,6 @@ all:
 
 ### Applications version Variables
 
-* `my_shell_k9s_version`: k9s version
 * `my_shell_helm_version`: helm version
 * `my_shell_oc_version`: oc version
 * `my_shell_oc_version_hash`: oc version hash
