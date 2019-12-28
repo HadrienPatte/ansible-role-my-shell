@@ -91,7 +91,6 @@ my_shell_command_complete:
   - command: aws
     complete_command: complete -C $(which aws_completer) aws
 
-my_shell_helm_version: 2.16.0
 my_shell_oc_version: 3.11.0
 my_shell_oc_version_hash: 0cbc58b
 

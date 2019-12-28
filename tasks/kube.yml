@@ -75,10 +75,16 @@
       - LICENSE
       - README.md
 
+- name: Find latest helm version
+  uri:
+    url: https://api.github.com/repos/helm/helm/releases
+    return_content: true
+  register: helm_response
+
 - name: Install helm
   become: true
   unarchive:
-    src: "https://get.helm.sh/helm-v{{ my_shell_helm_version }}\
+    src: "https://get.helm.sh/helm-{{ helm_response.json[0].tag_name }}\
       -linux-amd64.tar.gz"
     dest: /usr/local/bin/
     remote_src: true
