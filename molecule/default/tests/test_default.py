@@ -39,6 +39,9 @@ vars.update(playbook[0]['vars'])
     ('undistract-me'),
     ('docker-compose'),
     ('bash-completion'),
+    ('software-properties-common'),
+    ('uidmap'),
+    ('podman'),
     ('kubectl'),
 ])
 def test_apt_package_is_installed(host, name):

@@ -24,6 +24,24 @@
       - undistract-me
       - docker-compose
       - bash-completion
+      - software-properties-common  # Required to add PPA repositories
+      - uidmap  # Required for podman
+    state: present
+  register: apt_result
+  until: apt_result is succeeded
+  retries: 3
+
+- name: Add podman PPA
+  become: true
+  apt_repository:
+    repo: ppa:projectatomic/ppa
+    filename: podman
+    state: present
+
+- name: Install podman
+  become: true
+  apt:
+    name: podman
     state: present
   register: apt_result
   until: apt_result is succeeded
