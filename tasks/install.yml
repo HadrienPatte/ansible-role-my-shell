@@ -18,7 +18,7 @@
       - cmatrix
       - cowsay
       - traceroute
-      - autojump
+      - fasd
       - python3-dev
       - python-setuptools  # Required to use ansible pip module
       - undistract-me

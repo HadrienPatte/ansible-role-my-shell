@@ -33,7 +33,7 @@ vars.update(playbook[0]['vars'])
     ('cmatrix'),
     ('cowsay'),
     ('traceroute'),
-    ('autojump'),
+    ('fasd'),
     ('python3-dev'),
     ('python-setuptools'),
     ('undistract-me'),

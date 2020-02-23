@@ -21,7 +21,8 @@
     - bash_colors
     - inputrc
     - vimrc
-    - bashrc.d/autojump
+    - fasdrc
+    - bashrc.d/fasd
     - bashrc.d/virtualenvwrapper
     - bashrc.d/pipenvwrapper
     - bashrc.d/undistract-me

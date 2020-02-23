@@ -30,7 +30,6 @@
     - bash_colors
     - bash_aliases
     - inputrc
-    - bashrc.d/autojump
     - bashrc.d/virtualenvwrapper
     - bashrc.d/pipenvwrapper
 ...
