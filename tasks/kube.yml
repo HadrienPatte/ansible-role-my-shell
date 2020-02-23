@@ -65,7 +65,7 @@
 - name: Install k9s
   become: true
   unarchive:
-    src: "{{ k9s_response.json[0].assets[7].browser_download_url }}"
+    src: "{{ k9s_response.json[0].assets[4].browser_download_url }}"
     dest: /usr/local/bin/
     remote_src: true
     mode: 0755

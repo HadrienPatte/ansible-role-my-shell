@@ -62,6 +62,9 @@ my_shell_command_complete:
   - command: kubectl
     complete_command: . <(kubectl completion bash)
 
+  - command: oc
+    complete_command: . <(oc completion bash)
+
   - command: pip
     complete_command: |
       _pip_completion() {
