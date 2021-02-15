@@ -6,7 +6,10 @@ my_shell_add_hosts_from_inventory: false
 
 my_shell_git_username: Your name
 my_shell_git_email: user@example.com
-# my_shell_git_key_fingerprint:
+# my_shell_git_key_fingerprint: []
+
+# my_shell_gpg_keygrip:
+my_shell_gpg_cache_ttl_ssh: 86400
 
 my_shell_bash_aliases:
   - alias: e
